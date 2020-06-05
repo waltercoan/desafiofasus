@@ -38,7 +38,7 @@ public class GameServiceImpl implements GameService{
 
 	@Override
 	public Game findFirstByName(String name) {
-		return repository.findFirstByName(name);
+		return repository.findFirstByNameContains(name);
 	}
 
 	@Override

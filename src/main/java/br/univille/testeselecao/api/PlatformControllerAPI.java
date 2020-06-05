@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,7 +20,7 @@ public class PlatformControllerAPI {
 	@Autowired
 	private PlatformService service;
 	
-	
+	@CrossOrigin(origins = "*")
 	@GetMapping()
 	public ResponseEntity<List<Platform>> getAll() {
 		try {
@@ -32,7 +33,7 @@ public class PlatformControllerAPI {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
 		}
 	}
-	
+	@CrossOrigin(origins = "*")
 	@GetMapping(path="/name/{name}")
 	public ResponseEntity<List<Platform>> getAllByName(@PathVariable("name") String name ) {
 		try {
@@ -45,6 +46,7 @@ public class PlatformControllerAPI {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
 		}
 	}
+	@CrossOrigin(origins = "*")
 	@GetMapping(path="/{id}")
 	public ResponseEntity<Platform> getById(@PathVariable("id") long id) {
 		try {

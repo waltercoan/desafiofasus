@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,6 +24,7 @@ public class GameControllerAPI {
 	@Autowired
 	private GameService service;
 	
+	@CrossOrigin(origins = "*")
 	@GetMapping()
 	public ResponseEntity<List<Game>> getAll() {
 		try {
@@ -35,6 +37,7 @@ public class GameControllerAPI {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
 		}
 	}
+	@CrossOrigin(origins = "*")
 	@GetMapping(path="/name/{name}")
 	public ResponseEntity<List<Game>> getAllByName(@PathVariable("name") String name) {
 		try {
@@ -47,11 +50,13 @@ public class GameControllerAPI {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
 		}
 	}
+	@CrossOrigin(origins = "*")
 	@PostMapping
     public ResponseEntity<?> save(@RequestBody Game game){
         service.save(game);
         return ResponseEntity.ok(game);
     }
+	@CrossOrigin(origins = "*")
 	@PutMapping(path="/{id}")
     public ResponseEntity<?> update(@PathVariable("id")long id, @RequestBody Game game){
         Game oldGame = service.findById(id);
@@ -65,6 +70,7 @@ public class GameControllerAPI {
         service.save(oldGame);
         return ResponseEntity.ok().build();
     }
+	@CrossOrigin(origins = "*")
 	@DeleteMapping(path="/{id}")
     public ResponseEntity<?> delete(@PathVariable("id") long id){
 		Game game = service.findById(id);

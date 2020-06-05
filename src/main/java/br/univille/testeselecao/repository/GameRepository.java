@@ -13,5 +13,5 @@ public interface GameRepository extends JpaRepository<Game, Long> {
 	List<Game> findAll();
 	List<Game> findAllByPlatformEnable(Platform platform);
 	List<Game> findAllByName(String name);
-	Game findFirstByName(String name);
+	Game findFirstByNameContains(String name);
 }
